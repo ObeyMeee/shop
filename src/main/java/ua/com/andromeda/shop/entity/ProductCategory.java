@@ -16,7 +16,7 @@ public class ProductCategory {
     @Column
     private Long id;
     @Column(name = "category_name")
-    private String categoryName;
+    private String name;
 
     @OneToMany(cascade = CascadeType.ALL,
                 mappedBy = "category")
