@@ -6,4 +6,5 @@ import ua.com.andromeda.shop.entity.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    Customer findByEmail(String email);
 }

@@ -1,6 +1,7 @@
 package ua.com.andromeda.shop.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.com.andromeda.shop.dto.Purchase;
 import ua.com.andromeda.shop.dto.PurchaseResponse;
 import ua.com.andromeda.shop.entity.Customer;
@@ -20,6 +21,7 @@ public class CheckoutServiceImpl implements CheckoutService {
     }
 
     @Override
+    @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
         Order order = purchase.getOrder();
 
@@ -30,6 +32,12 @@ public class CheckoutServiceImpl implements CheckoutService {
         items.forEach(order::add);
 
         Customer customer = purchase.getCustomer();
+
+        Customer customerFromDatabase = customerRepository.findByEmail(customer.getEmail());
+
+        if (customerFromDatabase != null) {
+            customer = customerFromDatabase;
+        }
         customer.add(order);
 
         order.setBillingAddress(purchase.getBillingAddress());

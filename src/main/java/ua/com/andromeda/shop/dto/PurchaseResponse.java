@@ -1,4 +1,4 @@
 package ua.com.andromeda.shop.dto;
 
-public record PurchaseResponse(String trackingNumber) {
+public record PurchaseResponse(String orderTrackingNumber) {
 }

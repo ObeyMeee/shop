@@ -19,7 +19,6 @@ public class CheckoutController {
 
     @PostMapping("/purchase")
     public PurchaseResponse placeOrder(@RequestBody Purchase purchase) {
-        System.out.println(purchase);
         return checkoutService.placeOrder(purchase);
     }
 

@@ -1,6 +1,7 @@
 package ua.com.andromeda.shop.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -20,7 +21,9 @@ import java.util.Set;
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
+    @Value("${allowed.origins}")
+    private String[] allowedOrigins;
 
     @Autowired
     public MyDataRestConfig(EntityManager entityManager) {
@@ -29,13 +32,15 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
-        HttpMethod[] unsupportedActions = {HttpMethod.DELETE, HttpMethod.POST, HttpMethod.PUT};
+        HttpMethod[] unsupportedActions = {HttpMethod.DELETE, HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH};
 
         disableHttpMethods(config, unsupportedActions, Product.class);
         disableHttpMethods(config, unsupportedActions, ProductCategory.class);
         disableHttpMethods(config, unsupportedActions, State.class);
         disableHttpMethods(config, unsupportedActions, Country.class);
 
+
+        cors.addMapping(config.getBasePath() + "/**").allowedOrigins(allowedOrigins);
         exposeIds(config);
     }
 
@@ -50,7 +55,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     private void exposeIds(RepositoryRestConfiguration config) {
         Set<EntityType<?>> entityTypes = entityManager.getMetamodel().getEntities();
         List<Class<?>> entityClasses = new ArrayList<>();
-        for (EntityType<?> entityType: entityTypes){
+        for (EntityType<?> entityType : entityTypes) {
             entityClasses.add(entityType.getJavaType());
         }
         config.exposeIdsFor(entityClasses.toArray(new Class[0]));
