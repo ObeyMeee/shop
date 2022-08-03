@@ -7,10 +7,7 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import ua.com.andromeda.shop.entity.Country;
-import ua.com.andromeda.shop.entity.Product;
-import ua.com.andromeda.shop.entity.ProductCategory;
-import ua.com.andromeda.shop.entity.State;
+import ua.com.andromeda.shop.entity.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.metamodel.EntityType;
@@ -38,6 +35,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         disableHttpMethods(config, unsupportedActions, ProductCategory.class);
         disableHttpMethods(config, unsupportedActions, State.class);
         disableHttpMethods(config, unsupportedActions, Country.class);
+        disableHttpMethods(config, unsupportedActions, Order.class);
 
 
         cors.addMapping(config.getBasePath() + "/**").allowedOrigins(allowedOrigins);

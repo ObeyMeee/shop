@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.com.andromeda.shop.entity.Product;
 
-@Repository
 @RepositoryRestResource
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findByCategoryId(@RequestParam Long id, Pageable pageable);

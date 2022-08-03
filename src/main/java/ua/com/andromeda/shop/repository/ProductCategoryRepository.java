@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import ua.com.andromeda.shop.entity.ProductCategory;
 
 
-@Repository
 @RepositoryRestResource(collectionResourceRel = "productCategory", path = "product-category")
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Long> {
 }
