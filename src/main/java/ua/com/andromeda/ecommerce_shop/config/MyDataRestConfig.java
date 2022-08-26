@@ -1,4 +1,4 @@
-package ua.com.andromeda.shop.config;
+package ua.com.andromeda.ecommerce_shop.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import ua.com.andromeda.shop.entity.*;
+import ua.com.andromeda.ecommerce_shop.entity.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.metamodel.EntityType;

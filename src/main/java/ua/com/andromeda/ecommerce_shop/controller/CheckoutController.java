@@ -1,4 +1,4 @@
-package ua.com.andromeda.shop.controller;
+package ua.com.andromeda.ecommerce_shop.controller;
 
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ua.com.andromeda.shop.dto.PaymentInfo;
-import ua.com.andromeda.shop.dto.Purchase;
-import ua.com.andromeda.shop.dto.PurchaseResponse;
-import ua.com.andromeda.shop.service.CheckoutService;
+import ua.com.andromeda.ecommerce_shop.dto.PaymentInfo;
+import ua.com.andromeda.ecommerce_shop.dto.Purchase;
+import ua.com.andromeda.ecommerce_shop.dto.PurchaseResponse;
+import ua.com.andromeda.ecommerce_shop.service.CheckoutService;
 
 @RestController
 @CrossOrigin("https://localhost:4200")

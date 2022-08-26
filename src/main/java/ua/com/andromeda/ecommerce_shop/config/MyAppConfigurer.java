@@ -1,4 +1,4 @@
-package ua.com.andromeda.shop.config;
+package ua.com.andromeda.ecommerce_shop.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

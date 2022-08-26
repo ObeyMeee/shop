@@ -1,4 +1,4 @@
-package ua.com.andromeda.shop;
+package ua.com.andromeda.ecommerce_shop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

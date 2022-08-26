@@ -1,4 +1,4 @@
-package ua.com.andromeda.shop.entity;
+package ua.com.andromeda.ecommerce_shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

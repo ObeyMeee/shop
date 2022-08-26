@@ -1,4 +1,4 @@
-package ua.com.andromeda.shop.service;
+package ua.com.andromeda.ecommerce_shop.service;
 
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
@@ -6,13 +6,13 @@ import com.stripe.model.PaymentIntent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.com.andromeda.shop.dto.PaymentInfo;
-import ua.com.andromeda.shop.dto.Purchase;
-import ua.com.andromeda.shop.dto.PurchaseResponse;
-import ua.com.andromeda.shop.entity.Customer;
-import ua.com.andromeda.shop.entity.Order;
-import ua.com.andromeda.shop.entity.OrderItem;
-import ua.com.andromeda.shop.repository.CustomerRepository;
+import ua.com.andromeda.ecommerce_shop.dto.PaymentInfo;
+import ua.com.andromeda.ecommerce_shop.dto.Purchase;
+import ua.com.andromeda.ecommerce_shop.dto.PurchaseResponse;
+import ua.com.andromeda.ecommerce_shop.entity.Customer;
+import ua.com.andromeda.ecommerce_shop.entity.Order;
+import ua.com.andromeda.ecommerce_shop.entity.OrderItem;
+import ua.com.andromeda.ecommerce_shop.repository.CustomerRepository;
 
 import java.util.*;
 
