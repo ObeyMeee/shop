@@ -1,7 +1,12 @@
 package ua.com.andromeda.shop.controller;
 
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ua.com.andromeda.shop.dto.PaymentInfo;
 import ua.com.andromeda.shop.dto.Purchase;
 import ua.com.andromeda.shop.dto.PurchaseResponse;
 import ua.com.andromeda.shop.service.CheckoutService;
@@ -22,4 +27,9 @@ public class CheckoutController {
         return checkoutService.placeOrder(purchase);
     }
 
+    @PostMapping("/payment-intent")
+    public ResponseEntity<String> getPaymentInfo(@RequestBody PaymentInfo paymentInfo) throws StripeException {
+        PaymentIntent paymentIntent = checkoutService.createPaymentIntent(paymentInfo);
+        return new ResponseEntity<>(paymentIntent.toJson(), HttpStatus.OK);
+    }
 }
