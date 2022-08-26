@@ -68,7 +68,8 @@ public class CheckoutServiceImpl implements CheckoutService {
         parameters.put("amount", paymentInfo.getAmount());
         parameters.put("currency", paymentInfo.getCurrency());
         parameters.put("receipt_email", paymentInfo.getReceiptEmail());
-        parameters.put("payment_method_types", List.of("card"));
+        List<String> list = Arrays.asList("card");
+        parameters.put("payment_method_types", list);
         parameters.put("description", "Andromeda purchase");
     }
 }
