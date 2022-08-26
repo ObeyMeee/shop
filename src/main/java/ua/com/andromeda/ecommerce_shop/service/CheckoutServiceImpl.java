@@ -65,9 +65,9 @@ public class CheckoutServiceImpl implements CheckoutService {
     }
 
     private void setParameters(Map<String, Object> parameters, PaymentInfo paymentInfo) {
-        parameters.put("amount", paymentInfo.amount());
-        parameters.put("currency", paymentInfo.currency());
-        parameters.put("receipt_email", paymentInfo.receiptEmail());
+        parameters.put("amount", paymentInfo.getAmount());
+        parameters.put("currency", paymentInfo.getCurrency());
+        parameters.put("receipt_email", paymentInfo.getReceiptEmail());
         parameters.put("payment_method_types", List.of("card"));
         parameters.put("description", "Andromeda purchase");
     }
