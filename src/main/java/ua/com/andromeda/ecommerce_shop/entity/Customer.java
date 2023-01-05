@@ -8,13 +8,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "customer")
 @Getter
 @Setter
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
 
     @Column(name = "first_name")
@@ -38,5 +36,4 @@ public class Customer {
             order.setCustomer(this);
         }
     }
-
 }

@@ -18,7 +18,6 @@ import java.util.Set;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
 
     @Column(name = "order_tracking_number")
@@ -30,7 +29,6 @@ public class Order {
     @Column(name = "total_quantity")
     private Integer totalQuantity;
 
-    @Column
     private String status;
 
     @ManyToOne

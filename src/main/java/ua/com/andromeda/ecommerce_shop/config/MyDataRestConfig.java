@@ -31,12 +31,8 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         HttpMethod[] unsupportedActions = {HttpMethod.DELETE, HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH};
 
-        disableHttpMethods(config, unsupportedActions, Product.class);
-        disableHttpMethods(config, unsupportedActions, ProductCategory.class);
-        disableHttpMethods(config, unsupportedActions, State.class);
-        disableHttpMethods(config, unsupportedActions, Country.class);
-        disableHttpMethods(config, unsupportedActions, Order.class);
-
+        List<Class<?>> classes = List.of(Product.class, ProductCategory.class, State.class, Country.class, Order.class);
+        classes.forEach(clazz -> disableHttpMethods(config, unsupportedActions, clazz));
 
         cors.addMapping(config.getBasePath() + "/**").allowedOrigins(allowedOrigins);
         exposeIds(config);

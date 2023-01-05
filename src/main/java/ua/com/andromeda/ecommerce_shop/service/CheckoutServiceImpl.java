@@ -30,31 +30,30 @@ public class CheckoutServiceImpl implements CheckoutService {
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
         Order order = purchase.getOrder();
-
         String trackingNumber = generateOrderTrackingNumber();
         order.setOrderTrackingNumber(trackingNumber);
-
-        Set<OrderItem> items = purchase.getOrderItems();
-        items.forEach(order::add);
-
-        Customer customer = purchase.getCustomer();
-
-        Customer customerFromDatabase = customerRepository.findByEmail(customer.getEmail());
-
-        if (customerFromDatabase != null) {
-            customer = customerFromDatabase;
-        }
+        setOrderItems(purchase, order);
+        Customer customer = getCustomer(purchase);
         customer.add(order);
-
         order.setBillingAddress(purchase.getBillingAddress());
         order.setShippingAddress(purchase.getShippingAddress());
-
         customerRepository.save(customer);
         return new PurchaseResponse(trackingNumber);
     }
 
+    private static void setOrderItems(Purchase purchase, Order order) {
+        Set<OrderItem> items = purchase.getOrderItems();
+        items.forEach(order::add);
+    }
+
     private String generateOrderTrackingNumber() {
         return UUID.randomUUID().toString();
+    }
+
+    private Customer getCustomer(Purchase purchase) {
+        Customer customer = purchase.getCustomer();
+        Customer customerFromDatabase = customerRepository.findByEmail(customer.getEmail());
+        return Objects.requireNonNullElse(customerFromDatabase, customer);
     }
 
     @Override
@@ -65,10 +64,10 @@ public class CheckoutServiceImpl implements CheckoutService {
     }
 
     private void setParameters(Map<String, Object> parameters, PaymentInfo paymentInfo) {
-        parameters.put("amount", paymentInfo.getAmount());
-        parameters.put("currency", paymentInfo.getCurrency());
-        parameters.put("receipt_email", paymentInfo.getReceiptEmail());
-        List<String> list = Arrays.asList("card");
+        parameters.put("amount", paymentInfo.amount());
+        parameters.put("currency", paymentInfo.currency());
+        parameters.put("receipt_email", paymentInfo.receiptEmail());
+        List<String> list = List.of("card");
         parameters.put("payment_method_types", list);
         parameters.put("description", "Andromeda purchase");
     }

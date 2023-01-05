@@ -14,7 +14,7 @@
     <name>shop</name>
     <description>shop</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>19</java.version>
     </properties>
     <dependencies>
 
@@ -46,10 +46,15 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.8</version>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
@@ -85,5 +90,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

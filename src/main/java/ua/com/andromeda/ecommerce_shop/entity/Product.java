@@ -10,22 +10,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "product")
 @Getter
 @Setter
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
-
-    @Column
     private String sku;
-
-    @Column
     private String name;
-
-    @Column
     private String description;
 
     @Column(name = "unit_price")
@@ -34,7 +26,6 @@ public class Product {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column
     private boolean active;
 
     @Column(name = "units_in_stock")

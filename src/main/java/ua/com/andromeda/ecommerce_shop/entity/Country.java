@@ -8,20 +8,14 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "country")
 @Getter
 @Setter
 public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Integer id;
-
-    @Column
     private String name;
-
-    @Column
     private String code;
 
     @OneToMany(mappedBy = "country")
